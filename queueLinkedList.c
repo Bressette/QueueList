@@ -16,17 +16,18 @@ bool isEmpty(struct node *front, struct node *rear)
         return false;
 }
 
-void enqueue(struct node *front, stuct node *rear, int element)
+struct node *enQueue(struct node *front, struct node *rear, int element)
 {
     struct node *temp = front;
     struct node *newNode = malloc(sizeof(struct node));
     newNode->element = element;
     newNode->next = NULL;
 
-    if(isEmpty())
+    if(isEmpty(front, rear))
     {
         front = newNode;
         rear = newNode;
+        return front;
     }
 
     else
@@ -39,11 +40,24 @@ void enqueue(struct node *front, stuct node *rear, int element)
     return front;
 }
 
+void printQueue(struct node *front)
+{
+    struct node *temp = front;
+
+    while(temp != NULL)
+    {
+        printf("%d ", temp->element);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
 int main()
 {
     struct node *front = NULL;
     struct node *rear = NULL;
-
+    front = enQueue(front, rear, 10);
+    printQueue(front);
 
     return 0;
 }
